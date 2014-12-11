@@ -8,5 +8,5 @@ class BasicsTestCase(unittest.TestCase):
         pass
 
     def test_entry_point(self):
-        pass
+        assert True
 

@@ -6,8 +6,8 @@ from cement.core import foundation
 from cement.core.exc import CaughtSignal, FrameworkError
 from cement.core.controller import CementBaseController, expose
 
-from dbup.conf.logger import init_logger
-from dbup.lib.database import Database
+from dbup.core.conf.logger import init_logger
+from dbup.core.database import Database
 
 class BaseController(CementBaseController):
     class Meta:
@@ -27,8 +27,8 @@ class BaseController(CementBaseController):
     def create(self):
         self.app.log.info('creating database: %s' % (self.app.pargs.name))
         db = Database(self.app.pargs.name, self.app.pargs.username)
-        if not db.create()
-            raise Exception("
+        if db.create() != 0:
+            raise Exception("wtf")
 
 class DbupApp(foundation.CementApp):
     class Meta:
